@@ -10,7 +10,6 @@ class Game {
       new Phrase('A clean conscience makes a soft pillow'),
       new Phrase('Mountain Out of a Molehill'),
       new Phrase('A good neighbor a found treasure'),
-      new Phrase('Anger without power is folly'),
       new Phrase('Every slip is not a fall'),
       new Phrase('Give a Man a Fish'),
       new Phrase('Early ripe early rotten'),
