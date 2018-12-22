@@ -69,27 +69,64 @@ class Game {
     }
   }
 
+  /**
+   * Swaps one of the liveHeart icons for the lostHeart icon.
+   * Increments the missed counter.
+   * Triggers the lose condition if misses is too high.
+   */
   removeLife() {
     this.missed++;
+    const hearts = document.querySelectorAll('.tries');
+    hearts[5 - this.missed].firstElementChild.src = 'images/lostHeart.png';
     if(this.missed >= 5) {
       this.gameOver('lose');
     }
-    // replaces one of the liveHeart.png images with a lostHeart.png image
   }
 
+  /**
+   * Checks whether all letters in the phrase have been guessed correctly.
+   * @returns {boolean} - Boolean for whether all letters are revealed.
+   */
   checkForWin() {
-    document.querySelectorAll('.hide');
-    // checks if the player has revealed all letters in the Phrase
+    return document.querySelectorAll('.hide').length === 0;
   }
 
+  /**
+   * Processes the game over condition.
+   * Updates the DOM.
+   * Triggers the game reset.
+   * @param {string} outcome - String containing either 'win' or 'lose'.
+   */
   gameOver(outcome) {
-    console.log(outcome);
-    // displays the start screen overlay
-    // if outcome == win
-      // displays Win_Message
-      // sets overlay class to win
-    // else
-      // displays Loss_Message
-      // sets overlay class to lose
+    const overlay = document.querySelector('#overlay');
+    overlay.style.display = 'flex';
+    document.querySelector('#btn__reset').textContent = 'Play Again'
+    const message = document.querySelector('#game-over-message');
+
+    if(outcome === 'win') {
+      message.textContent = `You win! Mama's proud of you!`;
+      overlay.className = 'win';
+    } else {
+      message.textContent = `Mama says nothin' teaches you like losin'. Try again!`;
+      overlay.className = 'lose';
+    }
+    this.resetGame();
+  }
+
+  /**
+   * Cleans up some game state stuff.
+   * Resets keyboard.
+   * Refills heart containers.
+   */
+  resetGame() {
+    this.missed = 0;
+    this.guessedKeys = '';
+    document.querySelectorAll('.key').forEach(key => {
+      key.className = 'key';
+      key.removeAttribute('disabled');
+    });
+    document.querySelectorAll('.tries').forEach(heart => {
+      heart.firstElementChild.src = 'images/liveHeart.png';
+    });
   }
 }
