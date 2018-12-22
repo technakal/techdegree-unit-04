@@ -4,6 +4,10 @@
 
 const game = new Game();
 
+document.querySelector('#banner').style.display = 'none';
+document.querySelector('#scoreboard').style.display = 'none';
+document.querySelector('#qwerty').style.display = 'none';
+document.querySelector('#phrase').style.display = 'none';
 /**
  * Sets up the physical keyboard event listeners.
  * If on the start screen and enter is pressed, starts the game.
@@ -35,6 +39,16 @@ document.querySelector('#btn__reset').addEventListener('click', function() {
  * Triggers the handleInteraction function if the user presses one of the button elements.
  */
 document.querySelector('#qwerty').addEventListener('click', function() {
+  if(event.target.tagName === 'BUTTON') {
+    game.handleInteraction(event.target.textContent);
+  }
+});
+
+/**
+ * Sets the event listener on the on-screen keyboard for mobile events.
+ * Triggers the handleInteraction function if the user presses one of the button elements.
+ */
+document.querySelector('#qwerty').addEventListener('touchstart', function() {
   if(event.target.tagName === 'BUTTON') {
     game.handleInteraction(event.target.textContent);
   }

@@ -14,8 +14,10 @@ class Game {
       new Phrase('Elephant in the Room'),
       new Phrase('Give a Man a Fish'),
       new Phrase('Long In The Tooth'),
-      new Phrase('zephyr friends'),
-      new Phrase('coal weather')
+      new Phrase('A stitch in time saves nine'),
+      new Phrase('the early bird gets the worm'),
+      new Phrase('Out of sight out of mind'),
+      new Phrase('Cut The Mustard')
     ];
     this.activePhrase = null;
     this.guessedKeys = ''
@@ -26,7 +28,8 @@ class Game {
    * Selects a random phrase and displays the placeholders in the DOM.
    */
   startGame() {
-    document.querySelector('#overlay').style.display = 'none';
+    this.gameActive = true;
+    this.toggleDisplayed();
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
   }
@@ -98,11 +101,26 @@ class Game {
    * @param {string} outcome - String containing either 'win' or 'lose'.
    */
   gameOver(outcome) {
+    this.gameActive = false;
+    this.toggleDisplayed();
     const overlay = document.querySelector('#overlay');
-    overlay.style.display = 'flex';
-    document.querySelector('#btn__reset').textContent = 'Play Again'
-    const message = document.querySelector('#game-over-message');
+    
+    const button = document.querySelector('#btn__reset');
+    button.textContent = 'Play Again';
 
+    const lastWord = document.querySelector('#last-word');
+
+    if(lastWord == null) {
+      const container = document.createElement('h3');
+      container.setAttribute('id','last-word');
+      container.textContent = `Your word was "${this.activePhrase.phrase.toUpperCase()}."`;
+      overlay.insertBefore(container, button);
+    } else {
+      lastWord.textContent = `Your word was "${this.activePhrase.phrase.toUpperCase()}."`;
+    }
+
+    const message = document.querySelector('#game-over-message');
+    
     if(outcome === 'win') {
       message.textContent = `You win! Mama's proud of you!`;
       overlay.className = 'win';
@@ -110,7 +128,9 @@ class Game {
       message.textContent = `Mama says nothin' teaches you like losin'. Try again!`;
       overlay.className = 'lose';
     }
+
     this.resetGame();
+
   }
 
   /**
@@ -128,5 +148,30 @@ class Game {
     document.querySelectorAll('.tries').forEach(heart => {
       heart.firstElementChild.src = 'images/liveHeart.png';
     });
+  }
+
+  /**
+   * Sets the display attribute of various UI elements, depending on the phase of the game.
+   * Turns off the overlay if game is active. Turns on all UI elements.
+   * Turns off the UI elements if game is over. Turns on the overlay.
+   */
+  toggleDisplayed() {
+    const overlay = document.querySelector('#overlay');
+    const instructions = document.querySelector('#instructions');
+    instructions.textContent = '';
+    const ui = [
+      document.querySelector('#banner'),
+      document.querySelector('#scoreboard'),
+      document.querySelector('#qwerty'),
+      document.querySelector('#phrase')
+    ];
+    if(!this.gameActive) {
+      overlay.style.display = null;
+      ui.forEach(element => element.style.display = 'none');
+    } else {
+      overlay.style.display = 'none';
+      ui.forEach(element => element.style.display = null);
+    }
+
   }
 }

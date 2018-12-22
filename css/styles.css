@@ -1,16 +1,17 @@
 /* Main styles */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&Roboto:300');
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One');
 
 /* Variables */
 
 :root {
-  --color-win: #78CF82;
-  --color-lose: #D94545;
-  --color-start: #5b85b7;
-  --color-neutral: #445069;
-  --color-neutral-light: #D2D2D2;
-  --color-keys: #37474F;
-  --color-keys-light: #E5E5E5;
+  --color-win: 103, 142, 59;
+  --color-lose: 240, 80, 58;
+  --color-start: 99, 82, 158;
+  --color-neutral: 68, 80, 105;
+  --color-neutral-light: 255, 252, 255;
+  --color-keys: 9, 3, 2;
+  --color-keys-light: 229, 229, 229;
+  --font-header: 'Fjalla One', sans-serif;
   --font-size-large: 60px;
   --font-size-medium: 20px;
   --transition: all .2s ease-in-out;
@@ -20,7 +21,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-header);
 }
 
 body {
@@ -28,6 +29,7 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
+  margin: 0;
 }
 
 li, ol, ul {
@@ -50,9 +52,9 @@ button {
   margin: 6px;
   border: 1px solid transparent;
   padding: .5rem 1rem;
-  color: var(--color-keys);
+  color: rgba(var(--color-keys),1);
   font-size: var(--font-size-medium);
-  background-color: var(--color-keys-light);
+  background-color: rgba(var(--color-keys-light),1);
   border-radius: 5px;
   -webkit-transition: var(--transition);
   -o-transition: var(--transition);
@@ -66,11 +68,12 @@ button {
 }
 
 .main-container {
+  background: url(../images/mountainBase.svg) no-repeat center center fixed;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   height: 100%;
-  max-height: 900px;
   text-align: center;
 }
 
@@ -87,8 +90,8 @@ button {
 
 .header {
   color: #3a3f58;
+  font-size: 1.75rem;
 }
-
 
 /* Phrase */
 
@@ -99,7 +102,7 @@ button {
   padding: 20px 1px 0 1px;
   margin-right: 2px;
   color: transparent;
-  background: var(--color-neutral-light);
+  background: rgba(var(--color-neutral-light),1);
   border-radius: 5px;
 }
 
@@ -111,7 +114,7 @@ button {
 
 .show {
   color: #fff;
-  background-color: #4ac0d5;
+  background-color: #63529e;
   font-size: 20px;
   height: 65px;
   width: 65px;
@@ -131,21 +134,21 @@ button {
 }
 
 .chosen {
-  background: #3a3f58;
+  background: #2c1e48;
   border-radius: 5px;
   font-size: var(--font-size-medium);
-  color: #FFFFFF;
+  color: rgba(var(--color-neutral-light),1);
 }
 
 .wrong {
-  background: #f7a964;
-  color: #FFFFFF;
+  background: #fe801c;
+  color: rgba(var(--color-neutral-light),1);;
 }
 
 .btn__reset {
   padding: 16px;
   margin: 50px auto;
-  background: #f7a964;
+  background: #fe801c;
   border-radius: 5px;
   font-size: 20px;
   cursor: pointer;
@@ -166,7 +169,7 @@ button {
   display: flex;
   flex-direction: column;
   position: fixed;
-  color: #FFFFFF;
+  color: rgba(var(--color-neutral-light),1);
   justify-content: center;
   top: 0;
   bottom: 0;
@@ -176,29 +179,40 @@ button {
 }
 
 .title {
-  color: #FFF;
+  color: rgba(var(--color-neutral-light),1);
+  font-size: 1.75rem;
 }
 
 .start {
-  background-color: #3a3f58;
+  background-color: rgba(var(--color-start),0.75);
 }
 
 .start a {
-  color: #fff;
+  color: rgba(var(--color-neutral-light),1);
 }
 
 .win {
-  background-color: var(--color-win);
+  background-color: rgba(var(--color-win),0.75);
 }
 
 .win a {
-  color: var(--color-win);
+  color: rgba(var(--color-win),1);
 }
 
 .lose {
-  background-color: #f5785f;
+  background-color: rgba(var(--color-lose),0.75);
 }
 
 .lose a {
-  color: var(--color-lose);
+  color: rgba(var(--color-lose),1);
+}
+
+@media screen and (max-width: 764px) {
+  .keyrow {
+    flex-flow: row wrap;
+  }
+
+  .key {
+    flex: 1;
+  }
 }
