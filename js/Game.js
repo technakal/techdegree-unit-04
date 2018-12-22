@@ -19,6 +19,10 @@ class Game {
       new Phrase('Out of sight out of mind'),
       new Phrase('Lost time is never found'),
       new Phrase('It takes pennies to make dollars'),
+      new Phrase('cut the mustard'),
+      new Phrase('bless your heart'),
+      new Phrase('waste not want not'),
+      new PhrasE('blood is thicker than water'),
     ];
     this.activePhrase = null;
     this.guessedKeys = '';
