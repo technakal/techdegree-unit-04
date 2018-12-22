@@ -4,24 +4,25 @@
 
 class Game {
   constructor() {
-    this.missed = 0; 
+    this.missed = 0;
     this.phrases = [
-      new Phrase('Quick and Dirty'),
-      new Phrase('On the Ropes'),
+      new Phrase('A good deed is never lost'),
+      new Phrase('A clean conscience makes a soft pillow'),
       new Phrase('Mountain Out of a Molehill'),
-      new Phrase('Ugly Duckling'),
-      new Phrase('Quality Time'),
-      new Phrase('Elephant in the Room'),
+      new Phrase('A good neighbor a found treasure'),
+      new Phrase('Anger without power is folly'),
+      new Phrase('Every slip is not a fall'),
       new Phrase('Give a Man a Fish'),
-      new Phrase('Long In The Tooth'),
+      new Phrase('Early ripe early rotten'),
       new Phrase('A stitch in time saves nine'),
       new Phrase('the early bird gets the worm'),
       new Phrase('Out of sight out of mind'),
-      new Phrase('Cut The Mustard')
+      new Phrase('Lost time is never found'),
+      new Phrase('It takes pennies to make dollars'),
     ];
     this.activePhrase = null;
-    this.guessedKeys = ''
-  } 
+    this.guessedKeys = '';
+  }
 
   /**
    * Initiates the game.
@@ -54,16 +55,16 @@ class Game {
     let keys = document.querySelectorAll('.key');
     let keyButton;
     keys.forEach(key => {
-      if(key.textContent == guessedLetter) {
+      if (key.textContent == guessedLetter) {
         keyButton = key;
       }
     });
     keyButton.setAttribute('disabled', true);
     const inPhrase = this.activePhrase.checkLetter(guessedLetter);
-    if(inPhrase) {
+    if (inPhrase) {
       keyButton.classList.add('chosen');
       this.activePhrase.showMatchedLetter(guessedLetter);
-      if(this.checkForWin()) {
+      if (this.checkForWin()) {
         this.gameOver('win');
       }
     } else {
@@ -81,7 +82,7 @@ class Game {
     this.missed++;
     const hearts = document.querySelectorAll('.tries');
     hearts[5 - this.missed].firstElementChild.src = 'images/lostHeart.png';
-    if(this.missed >= 5) {
+    if (this.missed >= 5) {
       this.gameOver('lose');
     }
   }
@@ -104,24 +105,24 @@ class Game {
     this.gameActive = false;
     this.toggleDisplayed();
     const overlay = document.querySelector('#overlay');
-    
+
     const button = document.querySelector('#btn__reset');
     button.textContent = 'Play Again';
 
     const lastWord = document.querySelector('#last-word');
-
-    if(lastWord == null) {
+    const phrase = `Your phrase was "${this.activePhrase.phrase.toUpperCase()}."`;
+    if (lastWord == null) {
       const container = document.createElement('h3');
-      container.setAttribute('id','last-word');
-      container.textContent = `Your word was "${this.activePhrase.phrase.toUpperCase()}."`;
+      container.setAttribute('id', 'last-word');
+      container.textContent = phrase;
       overlay.insertBefore(container, button);
     } else {
-      lastWord.textContent = `Your word was "${this.activePhrase.phrase.toUpperCase()}."`;
+      lastWord.textContent = phrase;
     }
 
     const message = document.querySelector('#game-over-message');
-    
-    if(outcome === 'win') {
+
+    if (outcome === 'win') {
       message.textContent = `You win! Mama's proud of you!`;
       overlay.className = 'win';
     } else {
@@ -130,7 +131,6 @@ class Game {
     }
 
     this.resetGame();
-
   }
 
   /**
@@ -163,15 +163,14 @@ class Game {
       document.querySelector('#banner'),
       document.querySelector('#scoreboard'),
       document.querySelector('#qwerty'),
-      document.querySelector('#phrase')
+      document.querySelector('#phrase'),
     ];
-    if(!this.gameActive) {
+    if (!this.gameActive) {
       overlay.style.display = null;
-      ui.forEach(element => element.style.display = 'none');
+      ui.forEach(element => (element.style.display = 'none'));
     } else {
       overlay.style.display = 'none';
-      ui.forEach(element => element.style.display = null);
+      ui.forEach(element => (element.style.display = null));
     }
-
   }
 }

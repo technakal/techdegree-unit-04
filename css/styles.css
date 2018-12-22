@@ -7,14 +7,11 @@
   --color-win: 103, 142, 59;
   --color-lose: 240, 80, 58;
   --color-start: 99, 82, 158;
-  --color-neutral: 68, 80, 105;
   --color-neutral-light: 255, 252, 255;
-  --color-keys: 9, 3, 2;
-  --color-keys-light: 229, 229, 229;
   --font-header: 'Fjalla One', sans-serif;
   --font-size-large: 60px;
   --font-size-medium: 20px;
-  --transition: all .2s ease-in-out;
+  --transition: all 0.2s ease-in-out;
 }
 
 /* main */
@@ -32,7 +29,9 @@ body {
   margin: 0;
 }
 
-li, ol, ul {
+li,
+ol,
+ul {
   padding: 0;
   display: inline-block;
 }
@@ -49,22 +48,22 @@ h1 {
 }
 
 button {
-  margin: 6px;
-  border: 1px solid transparent;
-  padding: .5rem 1rem;
-  color: rgba(var(--color-keys),1);
-  font-size: var(--font-size-medium);
-  background-color: rgba(var(--color-keys-light),1);
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(var(--color-neutral-light), 1);
   border-radius: 5px;
+  color: rgba(var(--color-neutral-light), 1);
+  cursor: pointer;
+  font-size: var(--font-size-medium);
+  padding: 0.5rem 1rem;
+  margin: 6px;
   -webkit-transition: var(--transition);
   -o-transition: var(--transition);
   transition: var(--transition);
-  cursor: pointer;
 }
 
 #btn__reset {
-	width: 200px;
-	margin: 0 auto;
+  width: 200px;
+  margin: 0 auto;
 }
 
 .main-container {
@@ -82,7 +81,7 @@ button {
   padding: 10px;
 }
 
-#phrase ul li{
+#phrase ul li {
   margin-top: 15px;
 }
 
@@ -96,21 +95,20 @@ button {
 /* Phrase */
 
 .letter {
+  color: transparent;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(var(--color-neutral-light), 1);
+  border-radius: 5px;
   font-size: var(--font-size-medium);
   height: 65px;
-  width: 65px;
-  padding: 20px 1px 0 1px;
   margin-right: 2px;
-  color: transparent;
-  background: rgba(var(--color-neutral-light),1);
-  border-radius: 5px;
+  padding: 20px 1px 0 1px;
+  width: 65px;
 }
 
 .space {
   width: 15px;
 }
-
-
 
 .show {
   color: #fff;
@@ -121,10 +119,9 @@ button {
   padding: 20px 1px 0 1px;
   margin-right: 2px;
   border-radius: 5px;
-  -webkit-animation-duration: .5s;
-  animation-duration: .5s;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
 }
-
 
 /* Keyboard */
 
@@ -134,15 +131,15 @@ button {
 }
 
 .chosen {
-  background: #2c1e48;
+  background: rgba(var(--color-start), 1);
   border-radius: 5px;
   font-size: var(--font-size-medium);
-  color: rgba(var(--color-neutral-light),1);
+  color: rgba(var(--color-neutral-light), 1);
 }
 
 .wrong {
   background: #fe801c;
-  color: rgba(var(--color-neutral-light),1);;
+  color: rgba(var(--color-neutral-light), 1);
 }
 
 .btn__reset {
@@ -152,8 +149,8 @@ button {
   border-radius: 5px;
   font-size: 20px;
   cursor: pointer;
-  border-bottom: solid 4px rgba(0, 0, 0, .3);
-  border-right: solid 3px rgba(0, 0, 0, .3)
+  border-bottom: solid 4px rgba(0, 0, 0, 0.3);
+  border-right: solid 3px rgba(0, 0, 0, 0.3);
 }
 
 .btn__reset:active {
@@ -162,14 +159,13 @@ button {
   border-right: solid 3px rgba(0, 0, 0, 0);
 }
 
-
 /* Overlay */
 
 #overlay {
   display: flex;
   flex-direction: column;
   position: fixed;
-  color: rgba(var(--color-neutral-light),1);
+  color: rgba(var(--color-neutral-light), 1);
   justify-content: center;
   top: 0;
   bottom: 0;
@@ -179,32 +175,38 @@ button {
 }
 
 .title {
-  color: rgba(var(--color-neutral-light),1);
+  color: rgba(var(--color-neutral-light), 1);
   font-size: 1.75rem;
 }
 
 .start {
-  background-color: rgba(var(--color-start),0.75);
+  background-color: rgba(var(--color-start), 0.75);
 }
 
 .start a {
-  color: rgba(var(--color-neutral-light),1);
+  color: rgba(var(--color-neutral-light), 1);
 }
 
 .win {
-  background-color: rgba(var(--color-win),0.75);
+  background-color: rgba(var(--color-win), 0.75);
 }
 
 .win a {
-  color: rgba(var(--color-win),1);
+  color: rgba(var(--color-win), 1);
 }
 
 .lose {
-  background-color: rgba(var(--color-lose),0.75);
+  background-color: rgba(var(--color-lose), 0.75);
 }
 
 .lose a {
-  color: rgba(var(--color-lose),1);
+  color: rgba(var(--color-lose), 1);
+}
+
+/* Scoreboard */
+.tries img {
+  height: 55px;
+  width: 55px;
 }
 
 @media screen and (max-width: 764px) {
@@ -214,5 +216,10 @@ button {
 
   .key {
     flex: 1;
+  }
+
+  .tries img {
+    height: 35px;
+    width: 35px;
   }
 }
