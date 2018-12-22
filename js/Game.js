@@ -21,7 +21,7 @@ class Game {
       new Phrase('cut the mustard'),
       new Phrase('bless your heart'),
       new Phrase('waste not want not'),
-      new PhrasE('blood is thicker than water'),
+      new Phrase('blood is thicker than water'),
     ];
     this.activePhrase = null;
     this.guessedKeys = '';
