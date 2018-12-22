@@ -6,22 +6,21 @@ class Game {
   constructor() {
     this.missed = 0;
     this.phrases = [
-      new Phrase('A good deed is never lost'),
-      new Phrase('A clean conscience makes a soft pillow'),
+      new Phrase('Shot In the Dark'),
+      new Phrase('home sweet home'),
       new Phrase('Mountain Out of a Molehill'),
-      new Phrase('A good neighbor a found treasure'),
-      new Phrase('Every slip is not a fall'),
+      new Phrase('Swinging For the Fences'),
       new Phrase('Give a Man a Fish'),
       new Phrase('Early ripe early rotten'),
-      new Phrase('A stitch in time saves nine'),
-      new Phrase('the early bird gets the worm'),
-      new Phrase('Out of sight out of mind'),
-      new Phrase('Lost time is never found'),
-      new Phrase('It takes pennies to make dollars'),
+      new Phrase('Talk the Talk'),
+      new Phrase('early bird gets the worm'),
+      new Phrase('Son of a Gun'),
       new Phrase('cut the mustard'),
       new Phrase('bless your heart'),
       new Phrase('waste not want not'),
-      new Phrase('blood is thicker than water'),
+      new Phrase('Knuckle Down'),
+      new Phrase('All Greek To Me'),
+      new Phrase('Roll With the Punches'),
     ];
     this.activePhrase = null;
     this.guessedKeys = '';
